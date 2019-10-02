@@ -73,7 +73,7 @@ if cycle_act == 0:
   for i in range(250):
     t += 1
     if t == chosenone:
-      text += f"<a href='awnsers.html?from=memoria.html'>{choiced[1]}</a>"
+      text += f"<a href=\"\" onclick=\"window.location.reload(true);\">{choiced[1]}</a>"
     else:
       text += f"{choiced[0]}"
   print(f" <h5 class='text-center'>Encontre o emoji diferente</h5> </div> </div> </div> </div> <div class='py-5'> <div class='container'> <div class='row'> <div class='col-md-12'><h3 class='text-center'>{text}</h3>⌠Set-Cookie: token={token};path=/;")
@@ -88,7 +88,7 @@ else:
   for choic in choices:
     i += 1
     if choic == choiced:
-      texta += f"'<a href=\"awnsers.html?from=memoria.html\">{choic}</a>'"
+      texta += f"'<a href=\"\" onclick=\"window.location.reload(true);\">{choic}</a>'"
     else:
       texta += f"'{choic}'"
     if i < len(choices):
