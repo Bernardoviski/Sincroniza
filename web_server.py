@@ -31,9 +31,9 @@ class WebServer(object):
             header = "HTTP/1.1 500 Server Could Not Process the Request." + preset
         return header
 
-    def _request_handler(self, type, body):
+    def _request_handler(self, type, body, addr):
         cookies = ""
-        vars = {"cookies": {}, "url_params": {}}
+        vars = {"cookies": {}, "url_params": {}, "ip": addr}
         for line in body.split("\n"):
             if line.startswith("Cookie:"):
                 cook = line[8:].split("; ")
@@ -66,7 +66,7 @@ class WebServer(object):
                 return self._headers(500).encode() + htmlfy(
                     f"<html><head><title>UC | 500</title></head><body><center><h1>Erro 500</h1><br><p>Um erro occoreu no servidor. detalhes:<br>{e}</p></center></body></html>").encode()
         elif type == "POST":
-            values = {"cookies": {}}
+            values = {"cookies": {}, "ip": addr}
             for line in body.split("\n"):
                 if line.startswith("Cookie:"):
                     cook = line[8:].split("; ")
@@ -107,7 +107,7 @@ class WebServer(object):
                 client.close()
                 break
             method = data.split(" ")[0]
-            response = self._request_handler(method, data)
+            response = self._request_handler(method, data, addr[0])
             client.send(response)
             client.close()
             break
