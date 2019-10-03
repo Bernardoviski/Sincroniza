@@ -57,26 +57,32 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-4 text-center" style="color:#bf26ff;font-family:Delicious;">Atencao</h1>
+          <h1 class="display-4 text-center" style="color:#bf26ff;font-family:Delicious;">Analize</h1>
 <python>
-from random import choice, randint, shuffle
-cycle_act = 0#randint(0, 1)
-if cycle_act == 0:
-  choices = "😀 😁 😂 🤣 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 🥰 😗 😙 😚 🙂 🤗 🤩 🤔 🤨 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 😛 😜 😝 🤤 😒 😓 😔 😕 🙃 🤑 😲 ☹️ 🙁 😖 😞 😟 😤 😢 😭 😦 😧 😨 😩 🤯 😬 😰 😱 🥵 🥶 😳 🤪 😵 😡 😠 🤬 😷 🤒 🤕 🤢 🤮 🤧 😇 🤠 🤡 🥳 🥴 🥺 🤥 🤫 🤭 🧐 🤓 😈 👿 👹 👺 💀 👻 👽 🤖 💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾".split(" ")
-  choiced1 = choice(choices)
-  choices.remove(choiced1)
-  choiced2 = choice(choices)
-  choiced = [choiced1, choiced2]
-  text = f"<br>"
-  chosenone = randint(1, 252)
-  t = 0
-  for i in range(252):
-    t += 1
-    if t == chosenone:
-      text += f"<a href=\"\" onclick=\"window.location.reload(true);\">{choiced[1]}</a>"
-    else:
-      text += f"{choiced[0]}"
-  print(f" <h5 class='text-center'>Encontre o emoji diferente</h5> </div> </div> </div> </div> <div class='py-5'> <div class='container'> <div class='row'> <div class='col-md-12'><h3 class='text-center'>{text}</h3>")
+from random import choice, shuffle
+emojis = "😀 😁 😂 🤣 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 🥰 😗 😙 😚 🙂 🤗 🤩 🤔 🤨 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 😛 😜 😝 🤤 😒 😓 😔 😕 🙃 🤑 😲 ☹️ 🙁 😖 😞 😟 😤 😢 😭 😦 😧 😨 😩 🤯 😬 😰 😱 🥵 🥶 😳 🤪 😵 😡 😠 🤬 😷 🤒 🤕 🤢 🤮 🤧 😇 🤠 🤡 🥳 🥴 🥺 🤥 🤫 🤭 🧐 🤓 😈 👿 👹 👺 💀 👻 👽 🤖 💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾".split(" ")
+emotes = [
+    {"Emoji": ["😀", "😁", "😃", "😄", "😺", "😸", "😃"], "Description": "Emoji Sorridente"},
+    {"Emoji": ["😆", "🤣", "😂", "😹"], "Description": "Emoji Rindo"},
+    {"Emoji": ["😍", "😘", "😻"], "Description": "Emoji Apaixonado"},
+    {"Emoji": ["🙂", "😸"], "Description": "Emoji Feliz"},
+    {"Emoji": ["😦", "😧", "😰", "☹", "😔", "😕", "🤕", "😾", "😿", "😓", "😩"], "Description": "Emoji Triste"}
+    ]
+text = []
+random = choice(emotes)
+shuffle(emojis)
+emojis = emojis[:5]
+for emot in emojis:
+    if emot not in random["Emoji"]:
+        text.append(f"{emot}")
+chosen = choice(random['Emoji'])
+text.append(f"<a href=\"\" onclick=\"window.location.reload(true);\">{chosen}</a>")
+shuffle(text)
+textd = ""
+i = 0
+text = " ".join(text)
+text = f"{random['Description']}<br><br><br><br>{text}"
+print(f" <h5 class='text-center'>Encontre o emoji descrito</h5> </div> </div> </div> </div> <div class='py-5'> <div class='container'> <div class='row'> <div class='col-md-12'><h3 class='text-center'>{text}</h3>")
 
 </python>
         </div>
